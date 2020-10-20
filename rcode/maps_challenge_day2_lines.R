@@ -3,8 +3,6 @@
 # day 2 - lines
 # https://github.com/tjukanovt/30DayMapChallenge
 
-
-library(sf)
 library(maptools)
 library(sp)
 
@@ -17,6 +15,12 @@ points(x=Af[1,1],y=Af[1,2],col="red",pch=20)
 lines(x = Af[1,], y= Af[2,])
 
 
+
+# Alternatives ------------------------------------------------------------
+
+
+
+library(sf)
 
 library(linemap)
 
