@@ -1,0 +1,17 @@
+---
+title: "Text Maps Challenge"
+author: "Jan-Philipp Kolb"
+date: "20 10 2020"
+output: pdf_document
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+```
+
+## 
+
+Finding and editing the data is already a challenge. 
+
+
+
