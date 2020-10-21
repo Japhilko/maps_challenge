@@ -11,7 +11,13 @@ knitr::opts_chunk$set(echo = TRUE)
 
 ## 
 
-Finding and editing the data is already a challenge. 
+Finding and editing the data is already a challenge. Another challenge is to find the [best colors](http://www.stat.columbia.edu/~tzheng/files/Rcolor.pdf). 
+
+
+- [Color palettes for R](https://www.datanovia.com/en/blog/top-r-color-palettes-to-know-for-great-data-visualization/)
 
 
 
+## Open questions
+
+- What is the best way to bring the maps to twitter

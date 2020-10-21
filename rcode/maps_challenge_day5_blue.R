@@ -7,7 +7,7 @@
 # Load libraries ----------------------------------------------------------
 
 library(maptools)
-
+library(colorRamps)
 
 # Get data ----------------------------------------------------------------
 
@@ -32,11 +32,22 @@ names[names=="Czechia"] <- "Czech Republic"
 
 
 ind <- match(names,wrld_simpl$NAME)
+ind <- ind[!is.na(ind)]
+
+EUR <- wrld_simpl[ind,]
+
+ind2 <- match(EUR$NAME,names)
+EUR@data$X2017 <- dat$X2017[ind2]
+
+
+spplot(EUR,"X2017",col.regions=rgb(0,0,seq(0,1,.06)),col="lightblue")
 
 
 
-
+# Links -------------------------------------------------------------------
 
 
 
 # https://ec.europa.eu/eurostat/databrowser/view/migr_dubri/default/table?lang=en
+# https://stackoverflow.com/questions/12682212/how-to-get-spplot-lattice-to-not-draw-borders-around-polygons
+# https://www.datanovia.com/en/blog/top-r-color-palettes-to-know-for-great-data-visualization/
