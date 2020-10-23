@@ -9,3 +9,6 @@ dat <- readxl::read_xlsx("data/MIGR_DUBRI1603170562431.xlsx")
 
 
 dat
+
+
+spplot(EUR,"X2017",col.regions=blue2red(100))
