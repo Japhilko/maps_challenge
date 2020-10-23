@@ -21,7 +21,11 @@ plot(hexbin(x, y + x*(x+1)/4),
 
 # Links -------------------------------------------------------------------
 
+# https://cran.r-project.org/web/packages/hexbin/hexbin.pdf
+
 # https://www.data-to-viz.com/graph/hexbinmap.html
+
+# https://www.r-graph-gallery.com/hexbin-map
 
 # https://timogrossenbacher.ch/2016/12/beautiful-thematic-maps-with-ggplot2-only/
 

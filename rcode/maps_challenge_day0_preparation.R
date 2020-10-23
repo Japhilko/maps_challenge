@@ -30,3 +30,11 @@ str(q) #query structure
 
 
 
+
+# Links -------------------------------------------------------------------
+
+# https://dominicroye.github.io/en/2018/accessing-openstreetmap-data-with-r/
+
+# http://overpass-turbo.eu/
+# https://wiki.openstreetmap.org/wiki/Map_Features
+# http://osmar.r-forge.r-project.org/
