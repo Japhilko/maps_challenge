@@ -33,6 +33,8 @@ str(q) #query structure
 
 # Links -------------------------------------------------------------------
 
+# https://www.r-spatial.org/r/2018/10/25/ggplot2-sf.html
+
 # https://dominicroye.github.io/en/2018/accessing-openstreetmap-data-with-r/
 
 # http://overpass-turbo.eu/

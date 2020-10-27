@@ -4,13 +4,10 @@
 
 library(hexbin)
 
-set.seed(101)
 x <- rnorm(10000)
 y <- rnorm(10000)
-(bin <- hexbin(x, y))
-## or
-plot(hexbin(x, y + x*(x+1)/4),
-     main = "(X, X(X+1)/4 + Y) where X,Y ~ rnorm(10000)")
+
+plot(hexbin(x, y), main = "A little hexmap")
 
 
 # To Do -------------------------------------------------------------------
@@ -26,6 +23,9 @@ plot(hexbin(x, y + x*(x+1)/4),
 # https://www.data-to-viz.com/graph/hexbinmap.html
 
 # https://www.r-graph-gallery.com/hexbin-map
+
+
+# https://www.data-to-viz.com/story/RegionWithValue.html
 
 # https://timogrossenbacher.ch/2016/12/beautiful-thematic-maps-with-ggplot2-only/
 
