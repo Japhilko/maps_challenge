@@ -29,7 +29,10 @@ q <- getbb("Worms") %>%
 str(q) #query structure
 
 
+library(wiesbaden)
 
+
+# https://cran.r-project.org/web/packages/wiesbaden/vignettes/using-wiesbaden.html
 
 # Links -------------------------------------------------------------------
 
