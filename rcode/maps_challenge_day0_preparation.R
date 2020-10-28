@@ -3,6 +3,17 @@
 # Wed Oct 21 06:55:50 2020
 
 
+
+# To Do List --------------------------------------------------------------
+
+# find some data on climate_change - day 14
+# find data for connections - day 15
+# find data on islands - day 16
+# find data for a historical map
+
+
+
+
 # https://dominicroye.github.io/en/2018/accessing-openstreetmap-data-with-r/
 
 
