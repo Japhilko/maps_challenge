@@ -3,28 +3,23 @@
 # day 2 - lines
 # https://github.com/tjukanovt/30DayMapChallenge
 
-library(maptools)
-library(sp)
-
-data("wrld_simpl")
-
-Africa <- wrld_simpl[wrld_simpl@data$REGION==2,]
-Af <- coordinates(Africa)
-plot(Africa)
-points(x=Af[1,1],y=Af[1,2],col="red",pch=20)
-lines(x = Af[1,], y= Af[2,])
+library(osmplotr)
 
 
+library(osmplotr)
+bbox <- getbb("Amsterdam")
+dat_pa <- extract_osm_objects(key = 'highway',
+                              value = "primary",
+                              bbox = bbox)
+dat_sa <- extract_osm_objects(key = 'highway',
+                              value = "secondary",
+                              bbox = bbox)
 
-# Alternatives ------------------------------------------------------------
-
-
-
-library(sf)
-
-library(linemap)
-
-
+map <- osm_basemap(bbox = bbox, bg = c("#F5F5DC"))
+map <- add_osm_objects(map, dat_pa, col = c("#00008B"))
+map <- add_osm_objects(map, dat_sa, col = "green")
+# further objects can be added
+print_osm_map(map)
 
 
 # Links -------------------------------------------------------------------

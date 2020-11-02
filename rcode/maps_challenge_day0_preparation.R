@@ -17,6 +17,17 @@
 # https://dominicroye.github.io/en/2018/accessing-openstreetmap-data-with-r/
 
 
+
+# Coloring ----------------------------------------------------------------
+
+
+# https://cran.r-project.org/web/packages/colorspace/vignettes/hcl-colors.pdf
+
+
+
+# Install further packages ------------------------------------------------
+
+
 install.packages("osmar")
 
 #install the osmdata, sf, tidyverse and ggmap package
