@@ -8,3 +8,12 @@ library(tmap)
 data(World)
 World$fantasy_val <- runif(nrow(World))
 qtm(World,"fantasy_val", fill.palette = rgb(0,seq(0,1,.1),0))
+
+####
+
+
+# Alternative -------------------------------------------------------------
+
+# https://cran.r-project.org/web/packages/GADMTools/index.html
+
+UGA3 <- getData('GADM', country='UGA', level=3)
