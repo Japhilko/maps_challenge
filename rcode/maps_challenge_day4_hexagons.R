@@ -10,6 +10,8 @@ y <- rnorm(10000)
 plot(hexbin(x, y), main = "A little hexmap")
 
 
+
+
 # To Do -------------------------------------------------------------------
 
 # - get adequate data
@@ -17,6 +19,8 @@ plot(hexbin(x, y), main = "A little hexmap")
 
 
 # Links -------------------------------------------------------------------
+
+# https://cran.r-project.org/web/packages/GADMTools/vignettes/GADMTools_GRAPHICS.pdf
 
 # https://cran.r-project.org/web/packages/hexbin/hexbin.pdf
 
