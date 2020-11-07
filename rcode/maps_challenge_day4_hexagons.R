@@ -56,7 +56,7 @@ x <- c(rnorm(10000,1,2),rnorm(10000,-5,8))
 y <- rnorm(10000,2,5)
 
 x <- c(rnorm(10000,1,2))
-y <- rnorm(10000,2,5)
+y <- rnorm(10000,2,10)
 
 
 bin <- data.frame(x,y)
@@ -77,7 +77,9 @@ library(osmplotr)
 library(tmaptools)
 
 wb_gc <- tmaptools::geocode_OSM("Wiesbaden")
-bbox <- get_bbox (c(8.110603 ,50  ,8.286187 ,50.152023 ))
+
+bbox <- get_bbox (c(8.110603 ,49.993275  ,8.386187 ,50.152023 ))
+
 dat_B <- extract_osm_objects (key = 'amenity', value="cafe" ,bbox = bbox)
 
 # To Do -------------------------------------------------------------------

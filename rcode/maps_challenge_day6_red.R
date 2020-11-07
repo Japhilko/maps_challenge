@@ -9,6 +9,27 @@
 library(maptools)
 library(colorRamps)
 
+
+
+# A simple map ------------------------------------------------------------
+
+
+
+DEU2 <- getData('GADM', country='DEU', level=2)
+
+
+
+UGA3 <- readRDS("data/gadm36_UGA_3_sp.rds")
+
+# UGA3 <- getData('GADM', country='UGA', level=3)
+
+UGA3$NAME_2 <- as.factor(UGA3$NAME_2) 
+
+tmap::qtm(UGA3,"NAME_2")
+
+
+
+
 # Get data ----------------------------------------------------------------
 
 data("wrld_simpl")

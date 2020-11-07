@@ -4,5 +4,5 @@
 
 
 
-MYS3 <- raster::getData('GADM', country='MYS', level=3)
+MYS1 <- raster::getData('GADM', country='MYS', level=1)
 plot(MYS3,col="gray",border="white")
