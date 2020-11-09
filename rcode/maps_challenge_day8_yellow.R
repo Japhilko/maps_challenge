@@ -32,3 +32,5 @@ qtm(World,"fantasy_val", fill.palette = c("#FFFF00", "#FFF68F", "#EEE685", "#CDC
 # Links -------------------------------------------------------------------
 
 # https://deanattali.com/blog/colourpicker-ggmarginal-gadgets/
+
+# https://ritetag.com/best-hashtags-for/

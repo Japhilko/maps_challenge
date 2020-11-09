@@ -6,13 +6,60 @@
 library(tmaptools)
 library(osmplotr)
 
-geocode_OSM("Trier")
+cit <- "Wiesbaden"
 
-bbox <- get_bbox (c(6.551792 , 49.698600  , 6.747150 , 49.857117 ))
-dat_T <- extract_osm_objects (key = 'building', bbox = bbox)
+get_osm_dat <- function(cit,value="highway"){
+  gc <- geocode_OSM(cit)
+  bbox <- get_bbox (gc$bbox)
+  dat_osm <- extract_osm_objects (value, bbox = bbox)
+  return(dat_osm)
+  
+}
+
+cit <- "Seckenheim"
+dat_osm <- get_osm_dat(cit)
+
+save(dat_osm,file=paste0("C:/Arbeit/geoscience/data/","dat_osm_",cit,"buildings",".Rdata"))
 
 
-save(dat_T,file="C:/Arbeit/geoscience/data/dat_trier.Rdata")
+
+
+map <- osm_basemap(bbox = bbox, bg = c("#F5F5DC"))
+
+
+map <- add_osm_objects(map, dat_osm, col = c("#696969"))
+
+
+print_osm_map(map)
+
+map <- add_osm_objects(map, dat_sa, col = "green")
+
+
+
+
+png("maps/mapchallenge_day9_monochrome.png")
+qtm(dat_osm,fill=c("#B0B0B0"),borders=c("#8B7D6B"))
+dev.off()
+
+####################################
+
+# My Day9 #30daymapchallenge. A monochrome map of #Trier in Germany. I made this map with the #rstats #osmplotr package. 
+
+
+# Easy Example ------------------------------------------------------------
+
+
+
+cit <- "Wiesbaden"
+
+
+gc <- geocode_OSM(cit)
+
+bbox <- get_bbox (c(8.110603 ,49.993275 , 8.386187, 50.152023 ))
+dat_osm <- extract_osm_objects (key = 'building', bbox = bbox)
+
+
+save(dat_osm,file="C:/Arbeit/geoscience/data/dat_osm_trier.Rdata")
 
 
 gc_sip <- geocode_OSM("Sippersfeld")
