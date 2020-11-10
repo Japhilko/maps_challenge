@@ -87,3 +87,9 @@ dev.off()
 MYS1 <- raster::getData('GADM', country='MYS', level=1)
 plot(MYS3,col="gray",border="white")
 
+
+# Links -------------------------------------------------------------------
+
+# https://tlorusso.github.io/geodata_workshop/tmap_package
+
+# https://journal.r-project.org/archive/2019/RJ-2019-041/index.html
