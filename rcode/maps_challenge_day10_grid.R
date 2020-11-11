@@ -64,3 +64,6 @@ dat_osm <- extract_osm_objects (key="building", bbox = bbox)
 
 # https://github.com/mtennekes/tmap/issues/315
 
+# https://wiki.openstreetmap.org/wiki/Map_Features#Railway
+
+# https://cran.r-project.org/web/packages/mapcan/vignettes/riding_binplot_vignette.html
