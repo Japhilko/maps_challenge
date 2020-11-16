@@ -33,13 +33,58 @@ two <- unlist(lapply(datus2,function(x)x[2]))
 two <- gsub(")","",two)
 
 
-one <- unlist(lapply(datus2,function(x)x[1]))
+one <- trimws(unlist(lapply(datus2,function(x)x[1])))
+
+
+# Match the data ----------------------------------------------------------
+ind <- match(dat$State,two)
+
+
+dat$State[is.na(ind)]
+dat$state <- tolower(one[ind])
+
 data(df_pop_state)
 
-spplot(mdat)
+df_climate <- data.frame(region=dat$state,value=dat$D4)
 
+df_climate <- df_climate[-which(is.na(ind)),]
+
+
+state_choropleth(df_climate,
+                 title  = "US 2012 State Population Estimates",
+                 legend = "Population")
+
+state_choropleth(df_climate,
+                 legend     = "Exceptional Drought",
+                 num_colors = 1)
+
+
+
+# Contribution 14 for #30daymapchallenge. A map for exceptional drought in Novemer 2020. I have the data from droughtmonitor.unl.edu/. I used the #rstats/#rspatial package chroplethr. Thanks to @AriLamstein and others. 
 
 # Links -------------------------------------------------------------------
 
 # https://www.iberdrola.com/environment/top-countries-most-affected-by-climate-change
 
+# https://stat.ethz.ch/R-manual/R-devel/library/base/html/trimws.html
+
+# https://stackoverflow.com/questions/24741541/split-a-string-by-any-number-of-spaces
+
+# https://www.worldatlas.com/aatlas/usacodes.htm
+
+# Data Draught Monitor
+# https://droughtmonitor.unl.edu/Data/GISData.aspx
+
+# https://www.nature.com/npjurbansustain/about/editors-perspective-world-cities-day?utm_source=bing&utm_medium=cpc&utm_campaign=NPJS_1_AK02_GL_URBANSUSTAIN_AWA_WorldCities2020&utm_term=climate%20change&utm_content=NPJ_URBANSUSTAIN_WorldCities2020_2
+
+# https://www.eea.europa.eu/signals/signals-2019-content-list/articles/soil-land-and-climate-change
+
+# https://stackoverflow.com/questions/46014887/how-to-split-letters-with-bracket-and-numbers-in-r
+
+# https://stackoverflow.com/questions/35347537/using-strsplit-in-r-ignoring-anything-in-parentheses
+
+# https://arilamstein.com/documentation/choroplethr/reference/state_choropleth.html
+
+# https://www.climate.gov/maps-data/datasets/formats/csv
+
+# https://www.climate.gov/maps-data/dataset/weekly-drought-map
