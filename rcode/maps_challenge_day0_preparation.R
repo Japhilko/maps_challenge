@@ -54,6 +54,17 @@ str(q) #query structure
 library(wiesbaden)
 
 
+
+library(historydata)
+library(ggplot2)
+head(us_national_population)
+
+ggplot(us_national_population,
+       aes(x = year, y = population)) +
+  geom_line() +
+  ggtitle("Population of the United States, 1790-2010")
+
+
 # https://cran.r-project.org/web/packages/wiesbaden/vignettes/using-wiesbaden.html
 
 # Links -------------------------------------------------------------------
