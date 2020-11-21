@@ -25,7 +25,9 @@ gc <- geocode_OSM("Mannheim")
 bbox <- get_bbox (gc$bbox)
 dat_osm <- extract_osm_objects (key="landuse", bbox = bbox)
 
-save(dat_osm,file=paste0("C:/Arbeit/geoscience/data/dat_osm_mannheim_landuse.Rdata"))
+# save(dat_osm,file=paste0("C:/Arbeit/geoscience/data/dat_osm_mannheim_landuse.Rdata"))
+
+load(paste0("C:/Arbeit/geoscience/data/dat_osm_mannheim_landuse.Rdata"))
 
 qtm(dat_osm,"landuse")
 
