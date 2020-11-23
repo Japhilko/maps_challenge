@@ -4,13 +4,11 @@
 
 
 library(osmplotr)
-
+library(ggplot2)
 gc <- geocode_OSM("Barcelona")
 bbox <- get_bbox (gc$bbox)
 dat_osm <- extract_osm_objects (key="route",value="subway", bbox = bbox)
-
-
-qtm(dat_osm,borders="ref")
+ggplot() + geom_sf(data = dat_osm,aes(col=ref))
 
 
 png("maps/maps_challenge_day22.png")
@@ -25,6 +23,8 @@ dev.off()
 
 # Further attempts --------------------------------------------------------
 
+
+qtm(dat_osm,borders="ref")
 
 library(move)
 library(hflights)
@@ -54,3 +54,5 @@ head(hflights)
 # https://www.esri.com/en-us/arcgis/products/data/data-portfolio/business-behavioral
 
 # https://cran.r-project.org/web/packages/fishmove/fishmove.pdf
+
+# https://www.movebank.org/cms/webapp?gwt_fragment=page=studies,path=study51075375
