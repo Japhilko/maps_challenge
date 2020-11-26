@@ -30,3 +30,10 @@ dev.off()
 
 
 #30daymapchallenge - day 20 a map of population of municipalities in the Netherlands. Made with tmap package. #rstata #rspatial
+
+
+
+# Links -------------------------------------------------------------------
+
+
+# https://worldpopulationreview.com/countries/united-states-population

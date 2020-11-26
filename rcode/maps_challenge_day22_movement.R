@@ -20,6 +20,7 @@ dev.off()
 # https://bookdown.org/yihui/rmarkdown-cookbook/animation.html
 
 
+save(dat_osm,file="C:/Arbeit/geoscience/data/dat_osm_barcelona_metro.Rdata")
 
 # Further attempts --------------------------------------------------------
 
