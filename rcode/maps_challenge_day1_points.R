@@ -23,3 +23,6 @@ png("maps/maps_challenge_day1.png")
   map()
   map.cities(world.cities,col=rgb(0,0,1,.05),cex=2,pch=20)
 dev.off()
+
+
+

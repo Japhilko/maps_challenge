@@ -40,3 +40,5 @@ title(sub = gisco_attributions(), line = 1)
 
 
 # https://dieghernan.github.io/giscoR/
+
+# https://cloud.r-project.org/
