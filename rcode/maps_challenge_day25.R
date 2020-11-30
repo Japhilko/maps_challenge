@@ -2,6 +2,12 @@
 # Jan-Philipp Kolb
 # 
 
+
+
+
+# Load packages -----------------------------------------------------------
+
+
 # install.packages("COVID19")
 
 
@@ -9,6 +15,11 @@ library(COVID19)
 library(maptools)
 library(sp)
 library(leaflet)
+
+
+# Get data ----------------------------------------------------------------
+
+
 
 data("wrld_simpl")
 

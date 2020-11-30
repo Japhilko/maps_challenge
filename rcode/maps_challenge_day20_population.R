@@ -1,3 +1,8 @@
+#30daymapchallenge
+# Jan-Philipp Kolb
+# 
+
+
 
 #---------------------#
 # hello world tmap
@@ -37,3 +42,7 @@ dev.off()
 
 
 # https://worldpopulationreview.com/countries/united-states-population
+
+# http://zevross.com/blog/2018/10/02/creating-beautiful-demographic-maps-in-r-with-the-tidycensus-and-tmap-packages/#download-census-data
+
+# https://stackoverflow.com/questions/32622174/plotting-population-density-map-in-r-with-geom-point

@@ -41,6 +41,20 @@ png("maps/mapchallenge_day9_monochrome.png")
 qtm(dat_osm,fill=c("#B0B0B0"),borders=c("#8B7D6B"))
 dev.off()
 
+
+# Another try -------------------------------------------------------------
+
+
+
+cit <- "Luxemburg"
+dat_osm <- get_osm_dat(cit)
+
+save(dat_osm,file=paste0("C:/Arbeit/geoscience/data/","dat_osm_",cit,"buildings",".Rdata"))
+
+
+
+
+
 ####################################
 
 # My Day9 #30daymapchallenge. A monochrome map of #Trier in Germany. I made this map with the #rstats #osmplotr package. 
