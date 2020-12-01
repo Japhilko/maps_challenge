@@ -59,3 +59,14 @@ print_osm_map (map)
 
 # https://wiki.openstreetmap.org/wiki/OSM_file_formats
 
+
+
+# Challenge of last year
+
+# https://david.frigge.nz/30DayMapChallenge/index.html
+
+# https://docs.ropensci.org/osmplotr/#5%20highlighting%20clusters
+
+
+# search for:
+# twitter code challenge
