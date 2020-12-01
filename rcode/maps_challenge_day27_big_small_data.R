@@ -16,3 +16,12 @@ leaflet() %>%
   addTiles() %>%  
   addMarkers(lng=4.54491   , lat=52.40262 ,
              popup="One of my favorite places")
+
+
+
+
+# Links -------------------------------------------------------------------
+
+# https://www.earthdatascience.org/courses/earth-analytics/get-data-using-apis/leaflet-r/
+
+

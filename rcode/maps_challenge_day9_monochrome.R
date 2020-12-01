@@ -19,9 +19,9 @@ get_osm_dat <- function(cit,value="highway"){
 cit <- "Seckenheim"
 dat_osm <- get_osm_dat(cit)
 
-save(dat_osm,file=paste0("C:/Arbeit/geoscience/data/","dat_osm_",cit,"buildings",".Rdata"))
+# save(dat_osm,file=paste0("C:/Arbeit/geoscience/data/","dat_osm_",cit,"buildings",".Rdata"))
 
-
+save(dat_osm,file=paste0("C:/Arbeit/geoscience/data/","dat_osm_",cit,"highways",".Rdata"))
 
 
 map <- osm_basemap(bbox = bbox, bg = c("#F5F5DC"))
@@ -46,7 +46,7 @@ dev.off()
 
 
 
-cit <- "Luxemburg"
+cit <- "Mannheim"
 dat_osm <- get_osm_dat(cit)
 
 save(dat_osm,file=paste0("C:/Arbeit/geoscience/data/","dat_osm_",cit,"buildings",".Rdata"))

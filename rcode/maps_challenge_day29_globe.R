@@ -14,3 +14,6 @@ dev.off()
 
 
 #30daymapchallenge day 29. topic today is the globe. I used the #rstats package globe. Thanks to Adrian Baddeley, Thomas Lawrence and @egerubak #rspatial 
+
+
+# https://cran.r-project.org/web/packages/globe/globe.pdf
