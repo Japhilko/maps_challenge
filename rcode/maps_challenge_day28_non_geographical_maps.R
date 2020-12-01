@@ -25,6 +25,11 @@ dev.off()
 #rstats package ggfortify for this. Thanks to Masaaki Horikoshi, @TerryTangYuan, Austin Dickey and many more.
 
 
+# https://stackoverflow.com/questions/47788171/display-non-geographical-maps-using-r-leaflet-shiny
+
+# https://towardsdatascience.com/how-to-build-a-non-geographical-map-2-340256ad9f16
+
+
 
 
 # https://towardsdatascience.com/how-to-build-a-non-geographical-map-1-8d3373e83d6c

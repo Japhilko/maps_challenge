@@ -47,7 +47,8 @@ map <- add_osm_objects(map, dat_osm, col = rgb(.4,.4,1,.1))
 
 print_osm_map (map)
 
-
+# For the final of the #30daymapchallenge I have a map of Penang in Malaysia. I used the #rstats package osmplotr and tmap for this. The challenge was great fun. Thank you @tjukanov! Great maps e.g. @Kartokobri @MapsByAntonia @pheeelicks @richard_vogg
+ #rspatial. #GeographyTeacher  
 
 
 # Links -------------------------------------------------------------------
