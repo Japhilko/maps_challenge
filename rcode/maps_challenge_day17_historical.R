@@ -13,7 +13,8 @@ tmap::qtm(c1880,fill="royalblue",borders = "lightgray")
 
   
 # data from:
-# http://web.archive.org/web/20080328104539/http://library.thinkquest.org:80/C006628/download.html
+# http://web.archive.org/web/20080328104539/
+# http://library.thinkquest.org:80/C006628/download.html
 
 
 

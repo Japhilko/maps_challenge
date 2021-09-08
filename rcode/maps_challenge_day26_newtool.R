@@ -1,7 +1,7 @@
 # map with a new tool
 # Jan-Philipp Kolb
 
-
+library(sf)
 library(giscoR)
 
 DNK_res60 <- gisco_get_countries(resolution = "60", country = "DNK")
