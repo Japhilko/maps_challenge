@@ -1,0 +1,256 @@
+---
+title: "Daily challenges"
+author: "Jan-Philipp Kolb"
+date: "13 10 2021"
+output: slidy_presentation
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE,cache=F,warning = F,message=F)
+```
+
+## Points
+
+```{r}
+library(maps)
+data(world.cities)
+map()
+map.cities(world.cities,col=rgb(0,1,0,.05),cex=2,pch=20)
+```
+
+
+## Lines
+
+- get the [bounding box](https://www.rdocumentation.org/packages/osmdata/versions/0.1.6/topics/getbb)
+
+
+```{r osmdatawb,cache=T}
+library(osmdata)
+library(osmplotr)
+bbox <- getbb("Wiesbaden")
+dat_pa <- extract_osm_objects(key = 'highway',
+                              value = "primary",
+                              bbox = bbox)
+dat_sa <- extract_osm_objects(key = 'highway',
+                              value = "secondary",
+                              bbox = bbox)
+
+map <- osm_basemap(bbox = bbox, bg = c("#F5F5DC"))
+map <- add_osm_objects(map, dat_pa, col = c("#00008B"))
+map <- add_osm_objects(map, dat_sa, col = "green")
+# further objects can be added
+print_osm_map(map)
+
+```
+
+
+
+## Polygons
+
+- PLZ Shapefiles
+
+```{r}
+library(maptools)
+data("wrld_simpl")
+plot(wrld_simpl,col="red")
+```
+
+
+## Data Challenge 1: OpenStreetMap
+
+- get the [osm data](https://learnosm.org/en/osm-data/getting-data/) 
+
+
+## Red
+
+```{r mysdata,cache=T,eval=F}
+MYS3 <- raster::getData('GADM', country='MYS', level=3)
+tmap::qtm(UGA3,"NAME_2")
+```
+
+
+
+## Green
+
+```{r}
+library(tmap)
+
+data(World)
+World$fantasy_val <- runif(nrow(World))
+qtm(World,"fantasy_val", fill.palette = rgb(0,seq(0,1,.1),0))
+```
+
+
+
+## Blue
+
+```{r}
+library(tmap)
+data(World)
+World$fantasy_val <- runif(nrow(World))
+qtm(World,"fantasy_val", fill.palette = rgb(seq(0,1,.1),0,0))
+
+```
+
+
+## 9 Monochrome
+
+```{r wormsdat,cache=T,eval=F}
+library(osmdata)
+
+bbox <- getbb ("Worms")
+dat_osm <- extract_osm_objects (value="highway", bbox = bbox)
+qtm(dat_osm,fill=c("#B0B0B0"),borders=c("#8B7D6B"))
+
+```
+
+
+
+## 10 Raster
+
+```{r}
+
+path <- "C:/Users/X230/Downloads/NE1_50M_SR_W/NE1_50M_SR_W/"
+
+dat <- raster::stack(paste0(path,"NE1_50M_SR_W.tif"))
+
+
+sp::spplot(dat,"NE1_50M_SR_W.1")
+
+```
+
+
+## 11 3D
+
+```{r isosurf,cache=T}
+library(plot3D)
+x <- y <- runif(100)
+z <- rnorm(100)
+M <- mesh(x, y, z)
+R <- with (M, sqrt(x^2 + y^2 +z^2))
+p <- sin(2*R)/(R+1e-3)
+isosurf3D(x, y, z, colvar = p, level = 0)
+```
+
+
+
+## 12 Population
+
+```{r}
+library(tmap)
+data("World")
+qtm(World, fill="pop_est",fill.title="population")
+```
+
+
+
+## 13 Data Challenge 2: Natural Earth
+
+## 14 Map with a new tool
+
+## 15 Map made without a computer
+
+## 16 Urban/rural
+
+## 17 Land
+
+## 18 Water
+
+```{r watersaarland,cache=T,eval=F}
+library(osmplotr)
+gc <- geocode_OSM("Berlin")
+bbox <- get_bbox (gc$bbox)
+dat_osm <- extract_osm_objects (key="natural",
+                                value="water", bbox = bbox)
+```
+
+
+
+## 19 Islands
+
+```{r vutdat,cache=T}
+VUT2 <- raster::getData('GADM', country='VUT', level=2)
+  qtm(VUT2,fill="green")
+```
+
+
+## 20 Movement
+
+```{r barcelonadat,cache=T,eval=F}
+
+library(osmplotr)
+library(ggplot2)
+gc <- geocode_OSM("Barcelona")
+bbox <- get_bbox (gc$bbox)
+dat_osm <- extract_osm_objects (key="route",value="subway", bbox = bbox)
+ggplot() + geom_sf(data = dat_osm,aes(col=ref))
+
+```
+
+
+## 21 Elevation
+
+```{r elavat,cache=T}
+library(elevatr)
+
+elevation <- get_elev_raster(dat_pa, z = 9)
+plot(elevation)
+```
+
+
+
+## 22 Boundaries
+
+```{r}
+library(maptools)
+data("wrld_simpl")
+plot(wrld_simpl,col="red")
+```
+
+
+
+## 23 Data Challenge 3: GHSL
+
+## 24 Historical map
+
+```{r}
+
+c1880 <- rgdal::readOGR("C:/Users/X230/Downloads/1880/cntry1880.shp")
+  
+tmap::qtm(c1880,fill="royalblue",borders = "lightgray")
+
+
+# #30daymapchallenge day 17 - historical map - borders of 1880. Historical country GIS data from Thinkquest. Made with tmap #rstats #rspatial package. 
+
+  
+# data from:
+# http://web.archive.org/web/20080328104539/
+# http://library.thinkquest.org:80/C006628/download.html
+
+
+```
+
+
+
+## 25 Interactive map
+
+## 26 Choropleth map
+
+## 27 Heatmap
+
+## The Earth is not flat
+
+```{r}
+library(globe)
+
+globeearth()
+globeearth(eye=place("everest"),col="royalblue")
+
+```
+
+
+
+## 29 NULL
+
+## 30 Metamapping day
+
