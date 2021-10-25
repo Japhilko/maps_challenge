@@ -4,10 +4,16 @@
 # https://github.com/tjukanovt/30DayMapChallenge
 # #30DayMapChallenge
 
+path <- "C:/github/maps_challenge/mc2021/maps/"
+
+
 library(maps)
+
+png(paste0(path,"mapchallenge_day1_points.png"))
 data(world.cities)
 map()
-map.cities(world.cities,col=rgb(0,0,1,.05),cex=2,pch=20)
+map.cities(world.cities,col=rgb(0,0,1,.008),cex=1,pch=20,bg="gray")
+dev.off()
 
 # Ok the start is always hard ;-). My first map for the #30DayMapChallenge made with maps package by 
 # Richard A. Becker, Allan R. Wilks and Ray Brownrigg

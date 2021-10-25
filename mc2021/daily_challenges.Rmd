@@ -7,6 +7,7 @@ output: slidy_presentation
 
 ```{r setup, include=FALSE}
 knitr::opts_chunk$set(echo = TRUE,cache=F,warning = F,message=F)
+path <- "C:/github/maps_challenge/mc2021/maps/"
 ```
 
 ## Points
@@ -15,7 +16,9 @@ knitr::opts_chunk$set(echo = TRUE,cache=F,warning = F,message=F)
 library(maps)
 data(world.cities)
 map()
-map.cities(world.cities,col=rgb(0,1,0,.05),cex=2,pch=20)
+map.cities(world.cities,col=rgb(0,0,1,.008),
+           cex=1,pch=20,bg="gray")
+
 ```
 
 
@@ -24,7 +27,7 @@ map.cities(world.cities,col=rgb(0,1,0,.05),cex=2,pch=20)
 - get the [bounding box](https://www.rdocumentation.org/packages/osmdata/versions/0.1.6/topics/getbb)
 
 
-```{r osmdatawb,cache=T}
+```{r osmdatawb,cache=T,eval=F}
 library(osmdata)
 library(osmplotr)
 bbox <- getbb("Wiesbaden")
@@ -43,16 +46,48 @@ print_osm_map(map)
 
 ```
 
+```{r}
+library(osmdata)
+library(osmplotr)
+load(paste0(datapath,"penang_lines_prim.RData"))
+load(paste0(datapath,"penang_lines_sec.RData"))
+map <- osm_basemap(bbox = bbox, bg = c("#F5F5DC"))
+map <- add_osm_objects(map, dat_pa, col = c("#00008B"))
+map <- add_osm_objects(map, dat_sa, col = "green")
+# further objects can be added
+print_osm_map(map)
+```
+
+```{r}
+png(paste0(path,"mapchallenge_day2_lines.png"))
+print_osm_map(map)
+dev.off()
+```
 
 
 ## Polygons
 
-- PLZ Shapefiles
+- [PLZ Shapefiles](https://www.suche-postleitzahl.org/downloads)
 
 ```{r}
 library(maptools)
 data("wrld_simpl")
-plot(wrld_simpl,col="red")
+plot(wrld_simpl,col="royalblue")
+```
+
+
+```{r,eval=F}
+require(sf)
+setwd("C:/Arbeit/Forschung/geoscience/data/")
+shape <- read_sf(dsn = ".", layer = "plz-gebiete")
+save(shape, file="plz.RData")
+```
+
+
+```{r}
+load("C:/Arbeit/Forschung/geoscience/data/plz.RData")
+library(tmap)
+qtm(shape)
 ```
 
 
@@ -82,16 +117,23 @@ qtm(World,"fantasy_val", fill.palette = rgb(0,seq(0,1,.1),0))
 
 
 
-## Blue
+## Day 8 Blue
 
 ```{r}
 library(tmap)
 data(World)
 World$fantasy_val <- runif(nrow(World))
-qtm(World,"fantasy_val", fill.palette = rgb(seq(0,1,.1),0,0))
+qtm(World,"fantasy_val", fill.palette = rgb(0,0,seq(0,1,.1)))
 
 ```
 
+```{r}
+library(tmap)
+shape$fantasy_val <- runif(nrow(shape))
+plz1 <- substr(shape$plz,1,1)
+plz6 <- shape[plz1=="6",]
+qtm(plz6,"fantasy_val",fill.palette = rgb(0,0,seq(0,1,.1)))
+```
 
 ## 9 Monochrome
 
