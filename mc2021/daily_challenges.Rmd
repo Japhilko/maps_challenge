@@ -95,6 +95,35 @@ qtm(shape)
 
 - get the [osm data](https://learnosm.org/en/osm-data/getting-data/) 
 
+```{r osmdatawb2,eval=F}
+library(osmdata)
+library(osmplotr)
+bbox <- getbb("Madrid")
+dat_pa <- extract_osm_objects(key = 'highway',
+                              value = "primary",
+                              bbox = bbox)
+dat_sa <- extract_osm_objects(key = 'highway',
+                              value = "secondary",
+                              bbox = bbox)
+
+dat_ta <- extract_osm_objects(key = 'highway',
+                              value = "tertiary",
+                              bbox = bbox)
+
+map <- osm_basemap(bbox = bbox, bg = c("gray"))
+map <- add_osm_objects(map, dat_pa, col = c("#00008B"))
+map <- add_osm_objects(map, dat_sa, col = "green")
+map <- add_osm_objects(map, dat_ta, col = c("#8B0000"))
+# further objects can be added
+print_osm_map(map)
+
+save(dat_pa,file=paste0(datapath,"madrid_lines_prim.RData"))
+save(dat_sa,file=paste0(datapath,"madrid_lines_sec.RData"))
+save(dat_ta,file=paste0(datapath,"madrid_lines_ter.RData"))
+
+```
+
+
 
 ## Red
 
@@ -103,6 +132,15 @@ MYS3 <- raster::getData('GADM', country='MYS', level=3)
 tmap::qtm(UGA3,"NAME_2")
 ```
 
+
+```{r}
+library(tmap)
+shape$fantasy_val <- runif(nrow(shape))
+plz1 <- substr(shape$plz,1,1)
+plz5 <- shape[plz1=="5",]
+qtm(plz5,"fantasy_val",fill.palette = rgb(seq(0,1,.1),0,0))
+
+```
 
 
 ## Green
