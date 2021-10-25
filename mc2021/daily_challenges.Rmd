@@ -95,6 +95,8 @@ qtm(World,"fantasy_val", fill.palette = rgb(seq(0,1,.1),0,0))
 
 ## 9 Monochrome
 
+- [Examples for monochrome maps](https://somethingaboutmaps.wordpress.com/monocarto-2019-winners/)
+
 ```{r wormsdat,cache=T,eval=F}
 library(osmdata)
 
@@ -144,9 +146,20 @@ qtm(World, fill="pop_est",fill.title="population")
 
 
 
-## 13 Data Challenge 2: Natural Earth
+## 13 Data Challenge 2: [Natural Earth](https://cran.r-project.org/web/packages/rnaturalearth/README.html)
+
+```{r}
+
+```
+
 
 ## 14 Map with a new tool
+
+```{r}
+#library(rdeck)
+```
+
+
 
 ## 15 Map made without a computer
 
@@ -209,7 +222,12 @@ plot(wrld_simpl,col="red")
 
 
 
-## 23 Data Challenge 3: GHSL
+## 23 Data Challenge 3: [GHSL](https://ghsl.jrc.ec.europa.eu/)
+
+```{r}
+
+```
+
 
 ## 24 Historical map
 
@@ -234,6 +252,12 @@ tmap::qtm(c1880,fill="royalblue",borders = "lightgray")
 
 ## 25 Interactive map
 
+```{r,eval=F}
+library(leaflet)
+```
+
+
+
 ## 26 Choropleth map
 
 ## 27 Heatmap
@@ -252,5 +276,13 @@ globeearth(eye=place("everest"),col="royalblue")
 
 ## 29 NULL
 
+```{r}
+
+```
+
+
 ## 30 Metamapping day
 
+<!--
+Final day! Spend the day either by 1) collecting your entries from the challenge to a common gallery, 2) writing a tutorial or a blog post on one of your maps or 3) create a map from a theme you have chosen yourself
+-->
