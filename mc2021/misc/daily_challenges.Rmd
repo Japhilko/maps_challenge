@@ -12,8 +12,6 @@ path <- "C:/github/maps_challenge/mc2021/maps/"
 
 ## Points
 
-Ok let`s start my second year of #30daymapchallenge by @tjukanov. For me, the goal is again to publish a map every day. I'm looking forward to many impressive maps. #rstats 
-
 ```{r}
 library(maps)
 data(world.cities)
@@ -26,29 +24,9 @@ map.cities(world.cities,col=rgb(0,0,1,.008),
 
 ## Lines
 
-Day 2 of #30daymapchallenge and the topic is lines. You can see the subway lines of London. The data is from @OpenStreetMap. I used the #rstats packages osmdata and tmap. Thanks to @bikesRdata @MartijnTennekes.
-
-
-![](maps/mapchallenge_day2_lines.png)
-
 - get the [bounding box](https://www.rdocumentation.org/packages/osmdata/versions/0.1.6/topics/getbb)
 
 - [command bbox](https://search.r-project.org/CRAN/refmans/geojson/html/bbox.html)
-
-```{r osmdatawb,cache=T,eval=F}
-library(osmdata)
-library(osmplotr)
-bbox <- getbb("London")
-dat_pa <- extract_osm_objects(key = 'route',
-                              value = "subway",
-                              bbox = bbox)
-
-map <- osm_basemap(bbox = bbox, bg = c("black"))
-map <- add_osm_objects(map, dat_pa, col = c("blue"))
-# further objects can be added
-print_osm_map(map)
-
-```
 
 
 ```{r osmdatawb,cache=T,eval=F}
@@ -70,15 +48,11 @@ print_osm_map(map)
 
 ```
 
-```{r,eval=F}
+```{r}
 library(osmdata)
 library(osmplotr)
-
-datapath <- "C:/github/maps_challenge/data/"
-
 load(paste0(datapath,"penang_lines_prim.RData"))
 load(paste0(datapath,"penang_lines_sec.RData"))
-bbox <- getbb("Penang")
 map <- osm_basemap(bbox = bbox, bg = c("#F5F5DC"))
 map <- add_osm_objects(map, dat_pa, col = c("#00008B"))
 map <- add_osm_objects(map, dat_sa, col = "green")
@@ -86,12 +60,11 @@ map <- add_osm_objects(map, dat_sa, col = "green")
 print_osm_map(map)
 ```
 
-```{r,eval=F}
+```{r}
 png(paste0(path,"mapchallenge_day2_lines.png"))
 print_osm_map(map)
 dev.off()
 ```
-
 
 
 ## Polygons
@@ -117,10 +90,6 @@ save(shape, file="plz.RData")
 load("C:/Arbeit/Forschung/geoscience/data/plz.RData")
 library(tmap)
 qtm(shape)
-library(ggplot2)
-
-ggplot(shape) +
-  geom_sf(color = rgb(0,0,.5,.2), size = 0.1, fill = "lightblue") 
 ```
 
 
@@ -400,8 +369,6 @@ globeearth(eye=place("everest"),col="royalblue")
 
 <!--
 Final day! Spend the day either by 1) collecting your entries from the challenge to a common gallery, 2) writing a tutorial or a blog post on one of your maps or 3) create a map from a theme you have chosen yourself
-
-https://github.com/qgis/QGIS-Enhancement-Proposals/issues/235
 -->
 
 
