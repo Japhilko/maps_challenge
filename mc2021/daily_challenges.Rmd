@@ -10,7 +10,7 @@ knitr::opts_chunk$set(echo = TRUE,cache=F,warning = F,message=F)
 path <- "C:/github/maps_challenge/mc2021/maps/"
 ```
 
-## Points
+## Day 1 - Points
 
 Ok let`s start my second year of #30daymapchallenge by @tjukanov. For me, the goal is again to publish a map every day. I'm looking forward to many impressive maps. #rstats 
 
@@ -24,7 +24,7 @@ map.cities(world.cities,col=rgb(0,0,1,.008),
 ```
 
 
-## Lines
+## Day 2 - Lines
 
 Day 2 of #30daymapchallenge and the topic is lines. You can see the subway lines of London. The data is from @OpenStreetMap. I used the #rstats packages osmdata and tmap. Thanks to @bikesRdata @MartijnTennekes.
 
@@ -35,7 +35,7 @@ Day 2 of #30daymapchallenge and the topic is lines. You can see the subway lines
 
 - [command bbox](https://search.r-project.org/CRAN/refmans/geojson/html/bbox.html)
 
-```{r osmdatawb,cache=T,eval=F}
+```{r,cache=T,eval=F}
 library(osmdata)
 library(osmplotr)
 bbox <- getbb("London")
@@ -51,7 +51,7 @@ print_osm_map(map)
 ```
 
 
-```{r osmdatawb,cache=T,eval=F}
+```{r,cache=T,eval=F}
 library(osmdata)
 library(osmplotr)
 bbox <- getbb("Wiesbaden")
@@ -94,7 +94,10 @@ dev.off()
 
 
 
-## Polygons
+## Day 3 - Polygons
+
+Day 3 of #30daymapchallenge - Polygons. You can see the zip code areas in Germany. I used data from suche-postleitzahl.org and #rstats packages #ggplot2 and sf. Thanks to @edzerpebesma, @RogerBivand, @tiennebr, @ianmcook, @robinlovelace, @hadleywickham, @thomasp85 and all the others
+
 
 - [PLZ Shapefiles](https://www.suche-postleitzahl.org/downloads)
 
@@ -124,9 +127,44 @@ ggplot(shape) +
 ```
 
 
-## Data Challenge 1: OpenStreetMap
+## Day 4 Hexagons
 
-- get the [osm data](https://learnosm.org/en/osm-data/getting-data/) 
+<!--
+- https://cran.r-project.org/web/packages/sugarbag/readme/README.html
+
+- https://statisticsglobe.com/rename-files-using-r
+
+- https://rud.is/b/2015/05/14/geojson-hexagonal-statebins-in-r/
+
+https://github.com/tjukanovt/30DayMapChallenge
+-->
+
+Day 4 of #30daymapchallenge. The topic is hexagon. I cheat a little bit. A map of the country I like a lot is also called L'hexagone. The data is from gadm.org and I used the #rstats packages #tmap and #raster. #france
+
+
+```{r,eval=F}
+library(tmap)
+fra0 <- raster::getData('GADM', country='FRA', level=0)
+ qtm(fra0,fill="royalblue")
+```
+
+
+
+```{r,eval=F}
+path <- "C:/Arbeit/Forschung/geoscience/data/"
+setwd(path)
+file.rename("us_states_hexgrid.geojson.txt","us_states_hexgrid.geojson")
+us <- readOGR("us_states_hexgrid.geojson", "OGRGeoJSON")
+```
+
+
+## Day 5 Data Challenge 1: OpenStreetMap
+
+<!--
+https://wiki.openstreetmap.org/wiki/Map_features
+-->
+
+- Get the [osm data](https://learnosm.org/en/osm-data/getting-data/) 
 
 ```{r osmdatawb2,eval=F}
 library(osmdata)
@@ -155,8 +193,6 @@ save(dat_sa,file=paste0(datapath,"madrid_lines_sec.RData"))
 save(dat_ta,file=paste0(datapath,"madrid_lines_ter.RData"))
 
 ```
-
-
 
 ## Red
 
@@ -402,6 +438,10 @@ globeearth(eye=place("everest"),col="royalblue")
 Final day! Spend the day either by 1) collecting your entries from the challenge to a common gallery, 2) writing a tutorial or a blog post on one of your maps or 3) create a map from a theme you have chosen yourself
 
 https://github.com/qgis/QGIS-Enhancement-Proposals/issues/235
+https://stackoverflow.com/questions/58018950/ggplot-and-sf-for-overlaying-two-layers-of-polygons-shp
+
+
+https://r-spatial.org/r/2018/10/25/ggplot2-sf.html
 -->
 
 
