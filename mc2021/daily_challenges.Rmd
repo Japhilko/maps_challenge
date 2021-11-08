@@ -127,7 +127,7 @@ ggplot(shape) +
 ```
 
 
-## Day 4 Hexagons
+## Day 4 - Hexagon
 
 <!--
 - https://cran.r-project.org/web/packages/sugarbag/readme/README.html
@@ -158,7 +158,7 @@ us <- readOGR("us_states_hexgrid.geojson", "OGRGeoJSON")
 ```
 
 
-## Day 5 Data Challenge 1: OpenStreetMap
+## Day 5 - Data Challenge 1: OpenStreetMap
 
 <!--
 https://wiki.openstreetmap.org/wiki/Map_features
@@ -181,6 +181,11 @@ dat_ta <- extract_osm_objects(key = 'highway',
                               value = "tertiary",
                               bbox = bbox)
 
+dat_res <- extract_osm_objects(key = 'highway',
+                              value = "residential",
+                              bbox = bbox)
+
+
 map <- osm_basemap(bbox = bbox, bg = c("gray"))
 map <- add_osm_objects(map, dat_pa, col = c("#00008B"))
 map <- add_osm_objects(map, dat_sa, col = "green")
@@ -191,10 +196,70 @@ print_osm_map(map)
 save(dat_pa,file=paste0(datapath,"madrid_lines_prim.RData"))
 save(dat_sa,file=paste0(datapath,"madrid_lines_sec.RData"))
 save(dat_ta,file=paste0(datapath,"madrid_lines_ter.RData"))
+save(dat_res,file=paste0(datapath,"madrid_lines_res.RData"))
 
 ```
 
-## Red
+```{r}
+library(osmdata)
+library(osmplotr)
+bbox <- getbb("Madrid")
+
+
+load(paste0(datapath,"madrid_lines_prim.RData"))
+load(paste0(datapath,"madrid_lines_sec.RData"))
+load(paste0(datapath,"madrid_lines_ter.RData"))
+load(paste0(datapath,"madrid_lines_res.RData"))
+
+map <- osm_basemap(bbox = bbox, bg = c("black"))
+map <- add_osm_objects(map, dat_pa, col = c("#00008B"))
+map <- add_osm_objects(map, dat_sa, col = c("#FF8C00"))
+map <- add_osm_objects(map, dat_ta, col = c("#8B0000"))
+map <- add_osm_objects(map, dat_res, col = c(rgb(0,.9,0,.6)))
+# further objects can be added
+print_osm_map(map)
+
+```
+
+Day 5 of #30daymapchallenge. Today #openstreetmap data challenge. I used the #rstats packages #osmplotr and #osmdata to plot a map of the main streets in #Madrid. 
+
+<!--
+https://neis-one.org/2016/05/good-hashtags-in-osm/
+
+-->
+
+```{r}
+library(osmdata)
+library(osmplotr)
+bbox <- getbb("Paris")
+dat_pa <- extract_osm_objects(key = 'highway',
+                              value = "primary",
+                              bbox = bbox)
+save(dat_pa,file=paste0(datapath,"paris_lines_prim.RData"))
+
+```
+
+
+
+## Day 6 - Red
+
+Day 6 of the #30daymapchallenge. The streets in #Madrid in red. I used the #rstats packages #osmplotr and #osmdata for this. So it is based on #openstreetmap data.
+
+![](maps/mapchallenge_day6_red.PNG)
+
+```{r,eval=F}
+map <- osm_basemap(bbox = bbox, bg = c("black"))
+map <- add_osm_objects(map, dat_pa, col = rgb(.5,0,0,.9))
+map <- add_osm_objects(map, dat_sa, col = rgb(.6,0,0,.7))
+map <- add_osm_objects(map, dat_ta, col = rgb(.7,0,0,.5))
+map <- add_osm_objects(map, dat_res, col = rgb(.9,0,0,.3))
+# further objects can be added
+print_osm_map(map)
+
+```
+
+
+
 
 ```{r mysdata,cache=T,eval=F}
 MYS3 <- raster::getData('GADM', country='MYS', level=3)
@@ -212,7 +277,43 @@ qtm(plz5,"fantasy_val",fill.palette = rgb(seq(0,1,.1),0,0))
 ```
 
 
-## Green
+## Day 7 - Green
+
+
+```{r getnydata,eval=F}
+library(osmdata)
+library(osmplotr)
+bbox <- getbb("New York")
+dat_pa <- extract_osm_objects(key = 'highway',
+                              value = "primary",
+                              bbox = bbox)
+dat_sa <- extract_osm_objects(key = 'highway',
+                              value = "secondary",
+                              bbox = bbox)
+
+dat_ta <- extract_osm_objects(key = 'highway',
+                              value = "tertiary",
+                              bbox = bbox)
+
+dat_res <- extract_osm_objects(key = 'highway',
+                              value = "residential",
+                              bbox = bbox)
+
+
+map <- osm_basemap(bbox = bbox, bg = c("gray"))
+map <- add_osm_objects(map, dat_pa, col = c("#00008B"))
+map <- add_osm_objects(map, dat_sa, col = "green")
+map <- add_osm_objects(map, dat_ta, col = c("#8B0000"))
+# further objects can be added
+print_osm_map(map)
+
+save(dat_pa,file=paste0(datapath,"madrid_lines_prim.RData"))
+save(dat_sa,file=paste0(datapath,"madrid_lines_sec.RData"))
+save(dat_ta,file=paste0(datapath,"madrid_lines_ter.RData"))
+save(dat_res,file=paste0(datapath,"madrid_lines_res.RData"))
+
+```
+
 
 ```{r}
 library(tmap)
@@ -224,7 +325,7 @@ qtm(World,"fantasy_val", fill.palette = rgb(0,seq(0,1,.1),0))
 
 
 
-## Day 8 Blue
+## Day 8 - Blue
 
 ```{r}
 library(tmap)
@@ -242,7 +343,7 @@ plz6 <- shape[plz1=="6",]
 qtm(plz6,"fantasy_val",fill.palette = rgb(0,0,seq(0,1,.1)))
 ```
 
-## 9 Monochrome
+## Day 9 - Monochrome
 
 - [Examples for monochrome maps](https://somethingaboutmaps.wordpress.com/monocarto-2019-winners/)
 
@@ -257,7 +358,7 @@ qtm(dat_osm,fill=c("#B0B0B0"),borders=c("#8B7D6B"))
 
 
 
-## 10 Raster
+## Day 10 - Raster
 
 ```{r}
 
@@ -271,7 +372,7 @@ sp::spplot(dat,"NE1_50M_SR_W.1")
 ```
 
 
-## 11 3D
+## Day 11 - 3D
 
 ```{r isosurf,cache=T}
 library(plot3D)
@@ -285,7 +386,7 @@ isosurf3D(x, y, z, colvar = p, level = 0)
 
 
 
-## 12 Population
+## Day 12 - Population
 
 ```{r}
 library(tmap)
@@ -295,7 +396,7 @@ qtm(World, fill="pop_est",fill.title="population")
 
 
 
-## 13 Data Challenge 2: [Natural Earth](https://cran.r-project.org/web/packages/rnaturalearth/README.html)
+## Day 13 - Data Challenge 2: [Natural Earth](https://cran.r-project.org/web/packages/rnaturalearth/README.html)
 
 - r package [rnatualearth](https://cran.r-project.org/web/packages/rnaturalearth/README.html)
 
@@ -304,7 +405,7 @@ qtm(World, fill="pop_est",fill.title="population")
 ```
 
 
-## 14 Map with a new tool
+## Day 14 - Map with a new tool
 
 ```{r}
 #library(rdeck)
@@ -312,13 +413,13 @@ qtm(World, fill="pop_est",fill.title="population")
 
 
 
-## 15 Map made without a computer
+## Day 15 Map made without a computer
 
-## 16 Urban/rural
+## Day 16 Urban/rural
 
-## 17 Land
+## Day 17 Land
 
-## 18 Water
+## Day 18 Water
 
 ```{r watersaarland,cache=T,eval=F}
 library(osmplotr)
@@ -330,7 +431,7 @@ dat_osm <- extract_osm_objects (key="natural",
 
 
 
-## 19 Islands
+## Day 19 Islands
 
 ```{r vutdat,cache=T}
 VUT2 <- raster::getData('GADM', country='VUT', level=2)
@@ -338,7 +439,7 @@ VUT2 <- raster::getData('GADM', country='VUT', level=2)
 ```
 
 
-## 20 Movement
+## Day 20 Movement
 
 ```{r barcelonadat,cache=T,eval=F}
 
