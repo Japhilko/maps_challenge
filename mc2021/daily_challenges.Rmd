@@ -279,6 +279,8 @@ qtm(plz5,"fantasy_val",fill.palette = rgb(seq(0,1,.1),0,0))
 
 ## Day 7 - Green
 
+Day 7 of the #30daymapchallenge. The streets in #newyork in green. #rstats #osmplotr #osmdata #openstreetmap.
+
 
 ```{r getnydata,eval=F}
 library(osmdata)
@@ -300,17 +302,23 @@ dat_res <- extract_osm_objects(key = 'highway',
                               bbox = bbox)
 
 
-map <- osm_basemap(bbox = bbox, bg = c("gray"))
-map <- add_osm_objects(map, dat_pa, col = c("#00008B"))
+map <- osm_basemap(bbox = bbox, bg = c("black"))
+map <- add_osm_objects(map, dat_pa, col = rgb(0,.5,0,.7))
 map <- add_osm_objects(map, dat_sa, col = "green")
-map <- add_osm_objects(map, dat_ta, col = c("#8B0000"))
+map <- add_osm_objects(map, dat_ta, col = rgb(0,.8,0,.4))
+map <- add_osm_objects(map, dat_res, col = rgb(0,1,0,.3))
+
 # further objects can be added
 print_osm_map(map)
 
-save(dat_pa,file=paste0(datapath,"madrid_lines_prim.RData"))
-save(dat_sa,file=paste0(datapath,"madrid_lines_sec.RData"))
-save(dat_ta,file=paste0(datapath,"madrid_lines_ter.RData"))
-save(dat_res,file=paste0(datapath,"madrid_lines_res.RData"))
+save(dat_pa,file=paste0(datapath,
+                        "ny_lines_prim.RData"))
+save(dat_sa,file=paste0(datapath,
+                        "ny_lines_sec.RData"))
+save(dat_ta,file=paste0(datapath,
+                        "ny_lines_ter.RData"))
+save(dat_res,file=paste0(datapath,
+                         "ny_lines_res.RData"))
 
 ```
 
@@ -326,6 +334,52 @@ qtm(World,"fantasy_val", fill.palette = rgb(0,seq(0,1,.1),0))
 
 
 ## Day 8 - Blue
+
+Day 8 of the #30daymapchallenge. The streets of #berlin in blue. #rstats #osmplotr #osmdata #openstreetmap.
+
+
+
+```{r getnydata,eval=F}
+library(osmdata)
+library(osmplotr)
+bbox <- getbb("Berlin")
+dat_pa <- extract_osm_objects(key = 'highway',
+                              value = "primary",
+                              bbox = bbox)
+dat_sa <- extract_osm_objects(key = 'highway',
+                              value = "secondary",
+                              bbox = bbox)
+
+dat_ta <- extract_osm_objects(key = 'highway',
+                              value = "tertiary",
+                              bbox = bbox)
+
+dat_res <- extract_osm_objects(key = 'highway',
+                              value = "residential",
+                              bbox = bbox)
+
+
+map <- osm_basemap(bbox = bbox, bg = c("black"))
+map <- add_osm_objects(map, dat_pa, col = c("#00008B"))
+map <- add_osm_objects(map, dat_sa, col = c("#00EEEE"))
+map <- add_osm_objects(map, dat_ta, col = c("#BFEFFF"))
+map <- add_osm_objects(map, dat_res, col = rgb(0,0,1,.3))
+
+# further objects can be added
+print_osm_map(map)
+
+save(dat_pa,file=paste0(datapath,
+                        "berlin_lines_prim.RData"))
+save(dat_sa,file=paste0(datapath,
+                        "berlin_lines_sec.RData"))
+save(dat_ta,file=paste0(datapath,
+                        "berlin_lines_ter.RData"))
+save(dat_res,file=paste0(datapath,
+                         "berlin_lines_res.RData"))
+
+```
+
+
 
 ```{r}
 library(tmap)
@@ -347,6 +401,66 @@ qtm(plz6,"fantasy_val",fill.palette = rgb(0,0,seq(0,1,.1)))
 
 - [Examples for monochrome maps](https://somethingaboutmaps.wordpress.com/monocarto-2019-winners/)
 
+```{r getmainz,eval=F}
+library(osmdata)
+library(osmplotr)
+bbox <- getbb("Mainz")
+dat_pa <- extract_osm_objects(key = 'highway',
+                              value = "primary",
+                              bbox = bbox)
+dat_sa <- extract_osm_objects(key = 'highway',
+                              value = "secondary",
+                              bbox = bbox)
+
+dat_ta <- extract_osm_objects(key = 'highway',
+                              value = "tertiary",
+                              bbox = bbox)
+
+dat_res <- extract_osm_objects(key = 'highway',
+                              value = "residential",
+                              bbox = bbox)
+
+trunk <- extract_osm_objects(key = 'highway',
+                              value = "trunk",
+                              bbox = bbox)
+motorway <- extract_osm_objects(key = 'highway',
+                              value = "motorway",
+                              bbox = bbox)
+
+unclassified <- extract_osm_objects(key = 'highway',
+                              value = "unclassified",
+                              bbox = bbox)
+
+map <- osm_basemap(bbox = bbox, bg = c("white"))
+map <- add_osm_objects(map, dat_pa, col = c("black"),size=1.2)
+map <- add_osm_objects(map, dat_sa, col = c("gray"))
+map <- add_osm_objects(map, dat_ta, col = c("lightgray"))
+map <- add_osm_objects(map, dat_res, col = "gray")
+map <- add_osm_objects(map,trunk,col="black",size=1.2)
+map <- add_osm_objects(map,motorway,col="black",size=1.4)
+map <- add_osm_objects(map,unclassified,col="lightgray",size=.9)
+
+# further objects can be added
+print_osm_map(map)
+
+save(dat_pa,file=paste0(datapath,
+                        "mainz_roads.RData"))
+
+
+save(dat_pa,file=paste0(datapath,
+                        "worms_lines_prim.RData"))
+save(dat_sa,file=paste0(datapath,
+                        "worms_lines_sec.RData"))
+save(dat_ta,file=paste0(datapath,
+                        "worms_lines_ter.RData"))
+save(dat_res,file=paste0(datapath,
+                         "worms_lines_res.RData"))
+
+```
+
+
+
+
 ```{r wormsdat,cache=T,eval=F}
 library(osmdata)
 
@@ -360,6 +474,8 @@ qtm(dat_osm,fill=c("#B0B0B0"),borders=c("#8B7D6B"))
 
 ## Day 10 - Raster
 
+My contribution for day 10 of the #30daymapchallenge. A raster map of satellite-derived land cover data and shaded relief. I used data from naturalearthdata.com and the #rstats package sp.  
+
 ```{r}
 
 path <- "C:/Users/X230/Downloads/NE1_50M_SR_W/NE1_50M_SR_W/"
@@ -367,7 +483,7 @@ path <- "C:/Users/X230/Downloads/NE1_50M_SR_W/NE1_50M_SR_W/"
 dat <- raster::stack(paste0(path,"NE1_50M_SR_W.tif"))
 
 
-sp::spplot(dat,"NE1_50M_SR_W.1")
+sp::spplot(dat,"NE1_50M_SR_W.2")
 
 ```
 
