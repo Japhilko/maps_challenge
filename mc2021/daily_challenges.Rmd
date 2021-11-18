@@ -477,14 +477,14 @@ qtm(dat_osm,fill=c("#B0B0B0"),borders=c("#8B7D6B"))
 My contribution for day 10 of the #30daymapchallenge. A raster map of satellite-derived land cover data and shaded relief. I used data from naturalearthdata.com and the #rstats package sp.  
 
 ```{r}
-
+library(RColorBrewer)
 path <- "C:/Users/X230/Downloads/NE1_50M_SR_W/NE1_50M_SR_W/"
 
 dat <- raster::stack(paste0(path,"NE1_50M_SR_W.tif"))
+my.palette <- brewer.pal(n = 12, name = "OrRd")
 
-
-sp::spplot(dat,"NE1_50M_SR_W.2")
-
+sp::spplot(dat,"NE1_50M_SR_W.2", col.regions = my.palette)
+# http://www.nickeubank.com/wp-content/uploads/2015/10/RGIS3_MakingMaps_part1_mappingVectorData.html
 ```
 
 
@@ -501,13 +501,31 @@ isosurf3D(x, y, z, colvar = p, level = 0)
 ```
 
 
+Ok belatedly therefore quick and easy. #30daymapchallenge - day 11 a 3d map of the globe. I used the #rstats package globe.  
+
+```{r}
+library(globe)
+data(earth)
+globeearth(earth$coords, earth$runlen,col="royalblue")
+```
+
+
+<!--
+https://geocompr.robinlovelace.net/adv-map.html
+-->
+
 
 ## Day 12 - Population
+
+Day 12 of the #30daymapchallenge. The poulation of the municipalities in the #Netherlands. The map was produces with #rstats package #tmap. My code for all the maps is here:
+
 
 ```{r}
 library(tmap)
 data("World")
+data(NLD_muni)
 qtm(World, fill="pop_est",fill.title="population")
+qtm(NLD_muni, fill="population",fill.title="population")
 ```
 
 
