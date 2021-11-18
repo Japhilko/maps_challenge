@@ -535,7 +535,11 @@ qtm(NLD_muni, fill="population",fill.title="population")
 - r package [rnatualearth](https://cran.r-project.org/web/packages/rnaturalearth/README.html)
 
 ```{r}
-
+library(rnatualearth)
+lakes110 <- ne_download(scale = 110, type = 'lakes', category = 'physical')
+sp::plot(lakes110, col = 'blue')
+rivers110 <- ne_download(scale = 110, type = 'rivers_lake_centerlines', category = 'physical')
+sp::plot(rivers110, col = 'blue')
 ```
 
 
@@ -553,23 +557,40 @@ qtm(NLD_muni, fill="population",fill.title="population")
 
 ## Day 17 Land
 
-## Day 18 Water
+```{r}
 
-```{r watersaarland,cache=T,eval=F}
-library(osmplotr)
-gc <- geocode_OSM("Berlin")
-bbox <- get_bbox (gc$bbox)
-dat_osm <- extract_osm_objects (key="natural",
-                                value="water", bbox = bbox)
 ```
 
+
+
+## Day 18 Water
+
+Day 18 of the #30daymapchallenge. The topic for today is water. I used the #rstats packages #osmdata and #osmplotr to create a map of water in #Amsterdam. My code is at github.com/Japhilko/maps_challenge/tree/main/mc2021
+
+
+```{r watersaarland,cache=T,eval=F}
+library(osmdata)
+library(osmplotr)
+bbox <- getbb("Amsterdam")
+
+dat_osm <- extract_osm_objects (key="natural",
+                                value="water", bbox = bbox)
+
+map <- osm_basemap(bbox = bbox, bg = c("white"))
+map <- add_osm_objects(map, dat_osm, col = c("blue"),size=1.2)
+map
+```
+
+```{r}
+save(dat_osm,file="C:/Arbeit/Forschung/geoscience/data/osm_water_amsterdam.RData")
+```
 
 
 ## Day 19 Islands
 
 ```{r vutdat,cache=T}
-VUT2 <- raster::getData('GADM', country='VUT', level=2)
-  qtm(VUT2,fill="green")
+FJI <- raster::getData('GADM', country='FJI', level=2)
+qtm(VUT2,fill="royalblue")
 ```
 
 
