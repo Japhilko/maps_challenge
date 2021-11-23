@@ -545,8 +545,15 @@ sp::plot(rivers110, col = 'blue')
 
 ## Day 14 - Map with a new tool
 
+Day14 of the #30daymapchallenge - a new tool. I learned about the wonderful #rstats package stars from @edzerpebesma, Michael Summer, @tiennebr, Adriano Fantini, David Blodgett  and I found this example in the vignette. 
+
+
 ```{r}
+library(stars)
 #library(rdeck)
+tif = system.file("tif/L7_ETMs.tif", package = "stars")
+x = read_stars(tif)
+plot(x)
 ```
 
 
@@ -554,6 +561,52 @@ sp::plot(rivers110, col = 'blue')
 ## Day 15 Map made without a computer
 
 ## Day 16 Urban/rural
+
+Day 7 of the #30daymapchallenge. The streets in #newyork in green. #rstats #osmplotr #osmdata #openstreetmap.
+
+
+```{r getnydata,eval=F}
+library(osmdata)
+library(osmplotr)
+datapath <- "C:/Arbeit/Forschung/geoscience/data/"
+bbox <- getbb("London")
+dat_pa <- extract_osm_objects(key = 'highway',
+                              value = "primary",
+                              bbox = bbox)
+dat_sa <- extract_osm_objects(key = 'highway',
+                              value = "secondary",
+                              bbox = bbox)
+
+dat_ta <- extract_osm_objects(key = 'highway',
+                              value = "tertiary",
+                              bbox = bbox)
+
+dat_res <- extract_osm_objects(key = 'highway',
+                              value = "residential",
+                              bbox = bbox)
+
+
+map <- osm_basemap(bbox = bbox, bg = c("black"))
+map <- add_osm_objects(map, dat_pa, col = "red"
+map <- add_osm_objects(map, dat_sa, col = "purple")
+map <- add_osm_objects(map, dat_ta, col = rgb(0,.8,0,.4))
+map <- add_osm_objects(map, dat_res, col = rgb(0,0,1,.3))
+
+# further objects can be added
+print_osm_map(map)
+
+save(dat_pa,file=paste0(datapath,
+                        "london_lines_prim.RData"))
+save(dat_sa,file=paste0(datapath,
+                        "london_lines_sec.RData"))
+save(dat_ta,file=paste0(datapath,
+                        "london_lines_ter.RData"))
+save(dat_res,file=paste0(datapath,
+                         "london_lines_res.RData"))
+
+```
+
+
 
 ## Day 17 Land
 
@@ -588,7 +641,11 @@ save(dat_osm,file="C:/Arbeit/Forschung/geoscience/data/osm_water_amsterdam.RData
 
 ## Day 19 Islands
 
+Day 19 of the #30daymapchallenge. The topic for today is islands. I used the #rstats package #raster and the command getData to get the wonderful global administrative boundary data (#gadm). tmap was used for plotting. 
+
+
 ```{r vutdat,cache=T}
+library(tmap)
 FJI <- raster::getData('GADM', country='FJI', level=2)
 qtm(VUT2,fill="royalblue")
 ```
@@ -600,12 +657,30 @@ qtm(VUT2,fill="royalblue")
 
 library(osmplotr)
 library(ggplot2)
-gc <- geocode_OSM("Barcelona")
-bbox <- get_bbox (gc$bbox)
+
+bbox <- getbb("New York")
+
 dat_osm <- extract_osm_objects (key="route",value="subway", bbox = bbox)
-ggplot() + geom_sf(data = dat_osm,aes(col=ref))
+ggplot() + geom_sf(data = dat_osm,aes(col=name))
 
 ```
+
+```{r,eval=F}
+save(dat_osm,file=paste0(data_path,"subway_lines_ny.RData"))
+```
+
+```{r}
+bbox <- getbb("Amsterdam")
+
+cw1 <- extract_osm_objects (key="cycleway",value="track", bbox = bbox)
+cw2 <- extract_osm_objects (key="cycleway",value="lane", bbox = bbox)
+cw3 <- extract_osm_objects (key="cycleway",value="opposite", bbox = bbox)
+cw4 <- extract_osm_objects (key="cycleway",value="opposite_lane", bbox = bbox)
+cw5 <- extract_osm_objects (key="cycleway",value="opposite_track", bbox = bbox)
+cw6 <- extract_osm_objects (key="cycleway",value="share_busway", bbox = bbox)
+cw7 <- extract_osm_objects (key="cycleway",value="shared_lane", bbox = bbox)
+```
+
 
 
 ## 21 Elevation
