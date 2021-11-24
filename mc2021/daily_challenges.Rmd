@@ -653,6 +653,9 @@ qtm(VUT2,fill="royalblue")
 
 ## Day 20 Movement
 
+Topic day20 of the #30daymapchallenge is movement. I have the cycleways of #kobenhavn. I used the #rstats packages osmdata and osmplotr. The data is from #openstreetmap. #osm #bike #cycle #roadcycling #cycling
+
+
 ```{r barcelonadat,cache=T,eval=F}
 
 library(osmplotr)
@@ -670,7 +673,7 @@ save(dat_osm,file=paste0(data_path,"subway_lines_ny.RData"))
 ```
 
 ```{r}
-bbox <- getbb("Amsterdam")
+bbox <- getbb("Kopenhagen")
 
 cw1 <- extract_osm_objects (key="cycleway",value="track", bbox = bbox)
 cw2 <- extract_osm_objects (key="cycleway",value="lane", bbox = bbox)
@@ -681,20 +684,60 @@ cw6 <- extract_osm_objects (key="cycleway",value="share_busway", bbox = bbox)
 cw7 <- extract_osm_objects (key="cycleway",value="shared_lane", bbox = bbox)
 ```
 
+```{r,eval=F}
+save(cw1,cw2,cw3,file=paste0(data_path,"cycleway_amsterdam.RData"))
+save(cw1,cw2,cw3,cw4,cw5,file=paste0(data_path,"cycleway_kopenhagen.RData"))
+```
 
+```{r}
+map <- osm_basemap(bbox = bbox, bg = c("black"))
+map <- add_osm_objects(map, cw1, col = c("blue"),size=.7)
+map <- add_osm_objects(map, cw2, col = c("purple"),size=.7)
+map <- add_osm_objects(map, cw3, col = c("pink"),size=.7)
+map <- add_osm_objects(map, cw4, col = c("blue"),size=.7)
+map <- add_osm_objects(map, cw5, col = c("green"),size=.7)
+map
 
-## 21 Elevation
-
-```{r elavat,cache=T}
-library(elevatr)
-
-elevation <- get_elev_raster(dat_pa, z = 9)
-plot(elevation)
 ```
 
 
 
-## 22 Boundaries
+## Day 21 Elevation
+
+```{r elavat,cache=T,eval=F}
+library(elevatr)
+
+bbox <- getbb("Stuttgart")
+
+cw1 <- extract_osm_objects (key="highway",value="secondary", bbox = bbox)
+
+save(cw1,file=paste0(data_path,"roads_stuggi.RData"))
+elevation <- get_elev_raster(cw1, z = 9)
+qtm(elevation)
+load(paste0(data_path,"roads_hd.RData"))
+
+```
+
+
+
+## Day 22 Boundaries
+
+
+Day 22 of the #30daymapchallenge. The topic is boundaries. I downloaded the level 3 boundaries of #India with #rstats package #raster. raster::getData('GADM', country='IND', level=3)
+
+
+```{r,eval=F}
+ind3 <- raster::getData('GADM', country='IND', level=3)
+ qtm(ind3,fill="royalblue")
+# sp::spplot(ind3,col="royalblue")
+library(broom)
+  ind3_tidy <- tidy(ind3)
+ggplot(ind3, aes(x = long, y = lat)) +
+  geom_polygon(color = "black", size = 0.1, fill = "lightgrey") +
+  coord_equal() +
+  theme_minimal()
+```
+
 
 ```{r}
 library(maptools)
@@ -711,13 +754,16 @@ plot(wrld_simpl,col="red")
 ```
 
 
-## 24 Historical map
+## Day 24 Historical map
+
+
+#30daymapchallenge day 24 - historical map - borders of 1880. Historical country GIS data from Thinkquest. Made with tmap #rstats #rspatial package. 
 
 ```{r}
 
 c1880 <- rgdal::readOGR("C:/Users/X230/Downloads/1880/cntry1880.shp")
   
-tmap::qtm(c1880,fill="royalblue",borders = "lightgray")
+tmap::qtm(c1880,fill="orange",borders = "lightblue")
 
 
 # #30daymapchallenge day 17 - historical map - borders of 1880. Historical country GIS data from Thinkquest. Made with tmap #rstats #rspatial package. 
