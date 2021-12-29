@@ -610,6 +610,10 @@ save(dat_res,file=paste0(datapath,
 
 ## Day 17 Land
 
+
+
+
+
 ```{r}
 
 ```
@@ -749,6 +753,9 @@ plot(wrld_simpl,col="red")
 
 ## 23 Data Challenge 3: [GHSL](https://ghsl.jrc.ec.europa.eu/)
 
+
+[Data Science with R](https://rafalab.github.io/dsbook/)
+
 ```{r}
 
 ```
@@ -780,23 +787,52 @@ tmap::qtm(c1880,fill="orange",borders = "lightblue")
 
 ## 25 Interactive map
 
+The [leaflet](https://rstudio.github.io/leaflet/) package
+
 ```{r,eval=F}
 library(leaflet)
 ```
 
 
 
-## 26 Choropleth map
+## Day 26 Choropleth map
 
-## 27 Heatmap
+- [Choropleth map](https://mharinga.github.io/choropleth.html)
 
-## The Earth is not flat
+Day 26 of the #30daymapchallenge - a choropleth map of #Argentina made with #rstats packages raster and #tmap. The data is from gadm
+
+
+```{r}
+ind2 <- raster::getData('GADM', country='ARG', level=2)
+qtm(ind3,fill="royalblue")
+
+library(ggplot2)
+library(viridis)
+library(tmap)
+
+ind2$fantasy <- runif(nrow(ind2))
+
+qtm(ind2,"fantasy")
+```
+
+
+
+
+## Day 27 Heatmap
+
+[heatmap in R](https://statisticsglobe.com/heatmap-in-r)
+
+
+## Day 28 The Earth is not flat
+
+Day 28 of the #30daymapchallenge. The earth is not flat. I made a map of the globe with #rstats package globe.
+
 
 ```{r}
 library(globe)
 
 globeearth()
-globeearth(eye=place("everest"),col="royalblue")
+globeearth(eye=place("everest"),col="orange")
 
 ```
 
@@ -809,7 +845,7 @@ globeearth(eye=place("everest"),col="royalblue")
 ```
 
 
-## 30 Metamapping day
+## Day 30 Metamapping day
 
 <!--
 Final day! Spend the day either by 1) collecting your entries from the challenge to a common gallery, 2) writing a tutorial or a blog post on one of your maps or 3) create a map from a theme you have chosen yourself
